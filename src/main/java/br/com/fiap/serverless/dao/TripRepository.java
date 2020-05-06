@@ -43,7 +43,6 @@ public class TripRepository {
         eav.put(":val1", new AttributeValue().withS(id));
 
         final DynamoDBQueryExpression<Trip> queryExpression = new DynamoDBQueryExpression<Trip>()
-                .withIndexName("tagIndex").withConsistentRead(false)
                 .withKeyConditionExpression("id = :val1").withExpressionAttributeValues(eav);
 
         final List<Trip> trips = mapper.query(Trip.class, queryExpression);
