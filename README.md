@@ -38,9 +38,21 @@ aws dynamodb delete-table --table-name trip --endpoint-url http://localhost:8000
 mvn install
 ```
 
-###### Com o SAM CLI executar o seguinte comando para a execução da API:
+###### Com o SAM CLI executar o seguinte comando para a execução da API, de acordo com seu sistema operacional:
+
+###### Linux
+```
+sam local start-api --env-vars src/test/resources/test_environment_linux.json
+```
+
+###### MAC OS
 ```
 sam local start-api --env-vars src/test/resources/test_environment_mac.json
+```
+
+###### Windows
+```
+sam local start-api --env-vars src/test/resources/test_environment_windows.json
 ```
 
 ###### [AWS - Instalação SAM CLI](https://docs.aws.amazon.com/es_es/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)

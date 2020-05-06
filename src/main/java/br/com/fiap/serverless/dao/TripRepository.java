@@ -25,8 +25,8 @@ public class TripRepository {
     	String url = s3Manager.createBucket(bucketName.replace(" ", "").toLowerCase());
     	trip.setUrl(url);
 
-        mapper.save(trip);
-        return trip;
+      mapper.save(trip);
+      return trip;
     }
 
     public List<Trip> findByPeriod(final String starts, final String ends) {

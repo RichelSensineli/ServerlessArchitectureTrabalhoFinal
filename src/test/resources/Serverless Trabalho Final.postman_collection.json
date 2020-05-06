@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5bd4d274-1ef7-44f1-b95c-df3d4e37f152",
+		"_postman_id": "110da0df-c97c-459e-82fe-d632bb339dc3",
 		"name": "Serverless Trabalho Final",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e948aa2c-51d4-4910-b297-03f8fb8bb5fa",
+						"id": "72392eaa-d6d5-4e68-86af-adae82f91a69",
 						"exec": [
 							"pm.test(\"Status code for Searching a Trip By Period is 200\", function(){",
 							"    pm.response.to.have.status(200); ",
@@ -25,15 +25,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/trip/findByPeriod?starts=2015-02-01&ends=2015-08-09",
+					"raw": "http://localhost:3000/trip?starts=2015-02-01&ends=2015-08-09",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"trip",
-						"findByPeriod"
+						"trip"
 					],
 					"query": [
 						{
@@ -55,7 +54,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "383a2cc5-7006-4a02-a8a7-8910ba7345e9",
+						"id": "4e843f84-0028-4380-9052-e64d98701d7b",
 						"exec": [
 							"const response = pm.response.json();",
 							"",
@@ -80,7 +79,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"date\": \"2015-06-04\",\n    \"country\": \"Brazil\",\n    \"city\": \"Sao Paulo\"\n}"
+					"raw": "{\n    \"date\": \"2015-06-04\",\n    \"country\": \"Brazil\",\n    \"city\": \"SaoPaulo\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/trip",
@@ -102,7 +101,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "103927db-2925-4ce1-aae6-89c9e5df0690",
+						"id": "d640b232-5ca8-4561-9cfb-7e256a5d4799",
 						"exec": [
 							"const response = pm.response.json();",
 							"",
@@ -119,7 +118,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/trip/findById?id={{tripId}}",
+					"raw": "http://localhost:3000/trip/11b8498a-ebb2-4470-9e5d-7552397834af",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -127,13 +126,7 @@
 					"port": "3000",
 					"path": [
 						"trip",
-						"findById"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "{{tripId}}"
-						}
+						"11b8498a-ebb2-4470-9e5d-7552397834af"
 					]
 				}
 			},

@@ -45,7 +45,7 @@ Resources:
        GetTripsByPeriod:
          Type: Api
          Properties:
-           Path: /trip/findByPeriod
+           Path: /trip
            Method: get
            RequestParameters:
               - method.request.querystring.starts
@@ -64,10 +64,10 @@ Resources:
        GetTripById:
          Type: Api
          Properties:
-           Path: /trip/findById
+           Path: /trip/{id}
            Method: get
            RequestParameters:
-              - method.request.querystring.tag
+              - method.request.querystring.id
 
   TripTable:
     Type: AWS::DynamoDB::Table
