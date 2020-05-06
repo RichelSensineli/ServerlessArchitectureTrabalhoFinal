@@ -38,23 +38,34 @@ aws dynamodb delete-table --table-name trip --endpoint-url http://localhost:8000
 mvn install
 ```
 
-###### Com o SAM CLI executar o seguinte comando para a execução da API, de acordo com seu sistema operacional:
-
-###### Linux
-```
-sam local start-api --env-vars src/test/resources/test_environment_linux.json
-```
-
-###### MAC OS
+###### Com o SAM CLI executar o seguinte comando para a execução da API:
 ```
 sam local start-api --env-vars src/test/resources/test_environment_mac.json
-```
-
-###### Windows
-```
-sam local start-api --env-vars src/test/resources/test_environment_windows.json
 ```
 
 ###### [AWS - Instalação SAM CLI](https://docs.aws.amazon.com/es_es/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
 
 ##### B- AWS:
+###### Criando um Bucket S3 para o Deploy:
+```
+export BUCKET_NAME=trip-202005
+aws s3 mb s3://$BUCKET_NAME
+```
+(Lembre-se que o nome do Bucket deve ser único)
+
+###### Fazer o package da aplicação:
+```
+sam package \
+    --template-file template.yaml \
+    --output-template-file packaged.yaml \
+    --s3-bucket $BUCKET_NAME
+
+```
+
+###### Por fim, realizar o deploy da aplicação:
+```
+sam deploy \
+    --template-file packaged.yaml \
+    --stack-name trips-project \
+    --capabilities CAPABILITY_IAM
+```
