@@ -9,7 +9,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 public class Trip {
 
   @DynamoDBHashKey(attributeName = "id")
-	private String id;
+  private String id;
 
   @DynamoDBRangeKey(attributeName = "date")
   private String date;
