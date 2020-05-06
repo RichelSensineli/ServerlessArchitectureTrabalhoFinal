@@ -1,11 +1,13 @@
 # MBA em Full Stack Developer – Microservices, Cloud e IOT
 ## Disciplina: Serverless Architecture
 
-## Grupo:
-#### Ana - RM334056
-#### Edson - RM333819
-#### Hugo - RM333823
-#### Richel - RM333805
+### Grupo:
+##### Ana - RM334056
+##### Edson - RM333819
+##### Hugo - RM333823
+##### Richel - RM333805
+
+
 
 ### AWS Serverless Cloud Native Java RESTful API
 #### 1- Stack da API:
@@ -15,11 +17,15 @@
 * AWS Lambda
 * Amazon DynamoDB
 
+
+
 #### 2- Funcionalidades da API:
 
 #####   - Criação de um novo registro de Trip:
 #####   - Consulta de Trips por ID:
 #####   - Consulta de Trips por período:
+
+
 
 #### 3- Execução da API:
 
@@ -62,6 +68,7 @@ sam local start-api --env-vars src/test/resources/test_environment_windows.json
 ```
 
 ###### [AWS - Instalação SAM CLI](https://docs.aws.amazon.com/es_es/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
+
 
 ##### B- AWS:
 ###### Criando um Bucket S3 para o Deploy:
