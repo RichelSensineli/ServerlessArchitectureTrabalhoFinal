@@ -1,0 +1,100 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+    serverlessTrabalhoFinal
+
+    Rest API to manage Trips
+
+Globals:
+    Function:
+        Timeout: 60
+        MemorySize: 512
+        Environment:
+          Variables:
+            TABLE_NAME: !Ref TripTable
+            ENDPOINT_OVERRIDE: ""
+
+Resources:
+
+  CreateTripFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+     CodeUri: target/serverless-trabalho-final-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+     Handler: br.com.fiap.serverless.handler.CreateTrip::handleRequest
+     Runtime: java8
+     Policies:
+       - DynamoDBCrudPolicy:
+           TableName: !Ref TripTable     
+     Events:
+       CreateTrip:
+         Type: Api
+         Properties:
+           Path: /trip
+           Method: post
+           
+  GetTripsByPeriodFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+     CodeUri: target/serverless-trabalho-final-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+     Handler: br.com.fiap.serverless.handler.GetTripsByPeriod::handleRequest
+     Runtime: java8
+     Policies:
+       - DynamoDBCrudPolicy:
+           TableName: !Ref TripTable     
+     Events:
+       GetTripsByPeriod:
+         Type: Api
+         Properties:
+           Path: /trip/findByPeriod
+           Method: get
+           RequestParameters:
+              - method.request.querystring.starts
+              - method.request.querystring.ends
+              
+  GetTripsByIdFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+     CodeUri: target/serverless-trabalho-final-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+     Handler: br.com.fiap.serverless.handler.GetTripsById::handleRequest
+     Runtime: java8
+     Policies:
+       - DynamoDBCrudPolicy:
+           TableName: !Ref TripTable     
+     Events:
+       GetTripsById:
+         Type: Api
+         Properties:
+           Path: /trip/findById
+           Method: get
+           RequestParameters:
+              - method.request.querystring.tag
+
+  TripTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: trip
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: date
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+        - AttributeName: date
+          KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST
+
+Outputs:
+
+    CreateTripFunction:
+      Description: "CreateTrip Lambda Function ARN"
+      Value: !GetAtt CreateTripFunction.Arn
+      
+    GetTripsByPeriodFunction:
+      Description: "GetTripsByPeriod Lambda Function ARN"
+      Value: !GetAtt GetTripsByPeriodFunction.Arn
+      
+    GetTripByIdFunction:
+      Description: "GetTripById Lambda Function ARN"
+      Value: !GetAtt GetTripByIdFunction.Arn
