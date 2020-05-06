@@ -1,6 +1,12 @@
 # MBA em Full Stack Developer – Microservices, Cloud e IOT
 ## Disciplina: Serverless Architecture
 
+## Grupo:
+#### Ana - RM334056
+#### Edson - RM333819
+#### Hugo - RM333823
+#### Richel - RM333805
+
 ### AWS Serverless Cloud Native Java RESTful API
 #### 1- Stack da API:
 * Java SE 8
