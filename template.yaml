@@ -24,7 +24,8 @@ Resources:
      Runtime: java8
      Policies:
        - DynamoDBCrudPolicy:
-           TableName: !Ref TripTable     
+           TableName: !Ref TripTable    
+       - AmazonS3FullAccess 
      Events:
        CreateTrip:
          Type: Api
