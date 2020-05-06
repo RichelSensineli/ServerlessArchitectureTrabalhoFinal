@@ -4,6 +4,8 @@ import br.com.fiap.serverless.dao.TripRepository;
 import br.com.fiap.serverless.model.HandlerRequest;
 import br.com.fiap.serverless.model.HandlerResponse;
 import br.com.fiap.serverless.model.Trip;
+import br.com.fiap.serverless.model.TripDTO;
+
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,7 +27,8 @@ public class CreateTrip implements RequestHandler<HandlerRequest, HandlerRespons
         }
         context.getLogger().log("Creating a new trip to the country " + trip.getCountry());
         final Trip tripRecorded = repository.save(trip);
-        return HandlerResponse.builder().setStatusCode(201).setObjectBody(tripRecorded).build();
+        final TripDTO tripDTO = new TripDTO(tripRecorded.getId(), tripRecorded.getUrl());
+        return HandlerResponse.builder().setStatusCode(201).setObjectBody(tripDTO).build();
     }
   
 }

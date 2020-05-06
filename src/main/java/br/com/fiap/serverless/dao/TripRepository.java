@@ -14,14 +14,16 @@ import java.util.Random;
 public class TripRepository {
 
     private static final DynamoDBMapper mapper = DynamoDBManager.mapper();
-
+    private S3Manager s3Manager = new S3Manager();
+    
     public Trip save(final Trip trip) {
     	
     	Random generator = new Random();
     	int randomNumber = generator.nextInt(899999) + 100000;
- 
-    	String url = "www.aws."+trip.getCountry()+"-"+trip.getCity()+"-"+trip.getDate()+randomNumber;
-    	trip.setUrl(url.replace(" ", ""));
+    	
+    	String bucketName = trip.getCountry()+"-"+trip.getCity()+"-"+trip.getDate()+randomNumber;
+    	String url = s3Manager.createBucket(bucketName.replace(" ", "").toLowerCase());
+    	trip.setUrl(url);
 
         mapper.save(trip);
         return trip;
