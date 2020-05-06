@@ -18,7 +18,7 @@ Resources:
   CreateTripFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://fiap-34scj-trip-333823/edef42a547b1e462c205a2e76a1791f0
+      CodeUri: s3://fiap-34scj-trip-333823/acf88338a736306055385735213ba0c1
       Handler: br.com.fiap.serverless.handler.CreateTrip::handleRequest
       Runtime: java8
       Policies:
@@ -35,7 +35,7 @@ Resources:
   GetTripsByPeriodFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://fiap-34scj-trip-333823/edef42a547b1e462c205a2e76a1791f0
+      CodeUri: s3://fiap-34scj-trip-333823/acf88338a736306055385735213ba0c1
       Handler: br.com.fiap.serverless.handler.GetTripsByPeriod::handleRequest
       Runtime: java8
       Policies:
@@ -54,7 +54,7 @@ Resources:
   GetTripByIdFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://fiap-34scj-trip-333823/edef42a547b1e462c205a2e76a1791f0
+      CodeUri: s3://fiap-34scj-trip-333823/acf88338a736306055385735213ba0c1
       Handler: br.com.fiap.serverless.handler.GetTripById::handleRequest
       Runtime: java8
       Policies:
