@@ -1,12 +1,26 @@
 {
 	"info": {
-		"_postman_id": "0ce486ef-ab97-4950-903b-2e2c1ae91f5c",
+		"_postman_id": "5bd4d274-1ef7-44f1-b95c-df3d4e37f152",
 		"name": "Serverless Trabalho Final",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "findByPeriod",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e948aa2c-51d4-4910-b297-03f8fb8bb5fa",
+						"exec": [
+							"pm.test(\"Status code for Searching a Trip By Period is 200\", function(){",
+							"    pm.response.to.have.status(200); ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -37,6 +51,23 @@
 		},
 		{
 			"name": "createTrip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "383a2cc5-7006-4a02-a8a7-8910ba7345e9",
+						"exec": [
+							"const response = pm.response.json();",
+							"",
+							"pm.test(\"Status code for Registering a new Trip is 201\", function(){",
+							"    pm.response.to.have.status(201); ",
+							"    pm.globals.set(\"tripId\", response.id);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -49,7 +80,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": \"1234\",\n    \"date\": \"2015-06-04\",\n    \"country\": \"Brazil\",\n    \"city\": \"Sao Paulo\",\n    \"url\": \"http://teste.teste.com\"\n}"
+					"raw": "{\n    \"date\": \"2015-06-04\",\n    \"country\": \"Brazil\",\n    \"city\": \"Sao Paulo\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/trip",
@@ -67,11 +98,28 @@
 		},
 		{
 			"name": "findById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "103927db-2925-4ce1-aae6-89c9e5df0690",
+						"exec": [
+							"const response = pm.response.json();",
+							"",
+							"pm.test(\"Status code for Searching a Trip By Id is 200\", function(){",
+							"    pm.response.to.have.status(200); ",
+							"    pm.globals.unset(\"tripId\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/trip/findById?id=1234",
+					"raw": "http://localhost:3000/trip/findById?id={{tripId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -84,7 +132,7 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "1234"
+							"value": "{{tripId}}"
 						}
 					]
 				}
