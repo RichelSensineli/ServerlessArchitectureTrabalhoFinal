@@ -51,17 +51,17 @@ Resources:
               - method.request.querystring.starts
               - method.request.querystring.ends
               
-  GetTripsByIdFunction:
+  GetTripByIdFunction:
     Type: AWS::Serverless::Function
     Properties:
      CodeUri: target/serverless-trabalho-final-1.0.0-SNAPSHOT-jar-with-dependencies.jar
-     Handler: br.com.fiap.serverless.handler.GetTripsById::handleRequest
+     Handler: br.com.fiap.serverless.handler.GetTripById::handleRequest
      Runtime: java8
      Policies:
        - DynamoDBCrudPolicy:
            TableName: !Ref TripTable     
      Events:
-       GetTripsById:
+       GetTripById:
          Type: Api
          Properties:
            Path: /trip/findById

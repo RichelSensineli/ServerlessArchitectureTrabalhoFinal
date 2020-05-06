@@ -16,7 +16,7 @@ public class GetTripById implements RequestHandler<HandlerRequest, HandlerRespon
     @Override
     public HandlerResponse handleRequest(HandlerRequest request, Context context) {
 
-        final String id = request.getPathParameters().get("id");
+        final String id = request.getQueryStringParameters().get("id");
 
         context.getLogger().log("Searching for trips with id " + id);
 

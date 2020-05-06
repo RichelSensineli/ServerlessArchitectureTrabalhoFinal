@@ -45,3 +45,11 @@ Critérios de avaliação
 • A API deve ser capaz de rodar com a Stack completa local.
 • A API deve ser capaz de ser implantada na AWS através dos comandos AWS SAM.
 • A API deve implementar corretamente todos os requisitos funcionais e não funcionais.
+
+
+
+Criar a tabela dynamoDB local
+aws dynamodb create-table --table-name trip --attribute-definitions AttributeName=id,AttributeType=S AttributeName=date,AttributeType=S --key-schema AttributeName=id,KeyType=HASH AttributeName=date,KeyType=RANGE --billing-mode PAY_PER_REQUEST --endpoint-url http://localhost:8000
+
+Deletar a tabela
+aws dynamodb delete-table --table-name trip --endpoint-url http://localhost:8000

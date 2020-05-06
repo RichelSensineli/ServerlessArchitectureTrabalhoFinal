@@ -24,9 +24,13 @@ public class TripRepository {
         eav.put(":val1", new AttributeValue().withS(starts));
         eav.put(":val2", new AttributeValue().withS(ends));
 
+        final Map<String, String> expression = new HashMap<>();
+        expression.put("#date", "date");
+
         final DynamoDBQueryExpression<Trip> queryExpression = new DynamoDBQueryExpression<Trip>()
-                .withKeyConditionExpression("date between :val2 and :val3")
-                .withExpressionAttributeValues(eav);
+                .withKeyConditionExpression("#date between :val1 and :val2")
+                .withExpressionAttributeValues(eav)
+                .withExpressionAttributeNames(expression);
 
         final List<Trip> studies = mapper.query(Trip.class, queryExpression);
 
